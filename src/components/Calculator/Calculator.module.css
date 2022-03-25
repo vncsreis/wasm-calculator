@@ -1,10 +1,10 @@
 .calculator {
   padding: 20px;
-  width: 20%;
-  height: 40%;
+  width: 25%;
+  height: 70%;
   display: flex;
   gap: 5px;
   flex-direction: column;
-  background-color: gray;
+  background-color: rgb(44, 44, 44);
   border-radius: 5px;
 }

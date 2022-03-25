@@ -6,5 +6,13 @@ interface ButtonProps {
 }
 
 export default function Button({ children, className }: ButtonProps) {
-  return <button className={`${className} ${style.button}`}>{children}</button>;
+  return (
+    <button
+      className={`${className} ${style.button} ${
+        children === '=' ? style.equals : ''
+      }`}
+    >
+      {children}
+    </button>
+  );
 }
