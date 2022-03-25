@@ -1,0 +1,74 @@
+.grid {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-areas:
+    'seven eight nine divide'
+    'four five six multiply'
+    'one two three minus'
+    'zero dot plus equals';
+}
+
+.plus {
+  grid-area: plus;
+}
+
+.minus {
+  grid-area: minus;
+}
+
+.divide {
+  grid-area: divide;
+}
+
+.multiply {
+  grid-area: multiply;
+}
+
+.equals {
+  grid-area: equals;
+}
+
+.dot {
+  grid-area: dot;
+}
+
+.one {
+  grid-area: one;
+}
+
+.two {
+  grid-area: two;
+}
+
+.three {
+  grid-area: three;
+}
+
+.four {
+  grid-area: four;
+}
+
+.five {
+  grid-area: five;
+}
+
+.six {
+  grid-area: six;
+}
+
+.seven {
+  grid-area: seven;
+}
+
+.eight {
+  grid-area: eight;
+}
+
+.nine {
+  grid-area: nine;
+}
+
+.zero {
+  grid-area: zero;
+}

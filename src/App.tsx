@@ -1,16 +1,16 @@
 import { useState } from 'react';
 import './App.css';
-import Button from './components/Button';
-import ButtonGrid from './components/ButtonGrid';
+import Calculator from './components/Calculator';
+import Container from './components/Container';
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
     <div className="App">
-      <ButtonGrid>
-        <Button />
-      </ButtonGrid>
+      <Container>
+        <Calculator />
+      </Container>
     </div>
   );
 }
