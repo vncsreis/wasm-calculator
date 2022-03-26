@@ -1,68 +1,87 @@
 import Button from '../Button';
+import { CalculatorFunctions } from '../Calculator/Calculator';
 import styles from './ButtonGrid.module.css';
 
 interface ButtonGridProps {
-  changeText: (e: React.MouseEvent) => void;
+  calculator: CalculatorFunctions;
 }
 
-export default function ButtonGrid({ changeText }: ButtonGridProps) {
+export default function ButtonGrid({ calculator }: ButtonGridProps) {
+  const {
+    handleAddOperator,
+    handleClearText,
+    handleDelete,
+    handleAddNumber,
+    handleToggleNegative,
+  } = calculator;
+
   return (
     <div className={styles.grid}>
-      <Button onClick={changeText} className={styles.clear}>
+      <Button onClick={handleClearText} className={styles.clear}>
         C
       </Button>
-      <Button onClick={changeText} className={styles.negative}>
+      <Button onClick={handleToggleNegative} className={styles.negative}>
         +/-
       </Button>
-      <Button onClick={changeText} className={styles.divide}>
+      <Button onClick={handleAddOperator} className={styles.divide}>
         /
       </Button>
-      <Button onClick={changeText} className={styles.multiply}>
+      <Button onClick={handleAddOperator} className={styles.multiply}>
         *
       </Button>
-      <Button onClick={changeText} className={styles.seven}>
+      <Button onClick={handleAddNumber} className={styles.seven}>
         7
       </Button>
-      <Button onClick={changeText} className={styles.eight}>
+      <Button onClick={handleAddNumber} className={styles.eight}>
         8
       </Button>
-      <Button onClick={changeText} className={styles.nine}>
+      <Button onClick={handleAddNumber} className={styles.nine}>
         9
       </Button>
-      <Button onClick={changeText} className={styles.minus}>
+      <Button onClick={handleAddOperator} className={styles.minus}>
         -
       </Button>
-      <Button onClick={changeText} className={styles.four}>
+      <Button onClick={handleAddNumber} className={styles.four}>
         4
       </Button>
-      <Button onClick={changeText} className={styles.five}>
+      <Button onClick={handleAddNumber} className={styles.five}>
         5
       </Button>
-      <Button onClick={changeText} className={styles.six}>
+      <Button onClick={handleAddNumber} className={styles.six}>
         6
       </Button>
-      <Button onClick={changeText} className={styles.plus}>
+      <Button onClick={handleAddOperator} className={styles.plus}>
         +
       </Button>
-      <Button onClick={changeText} className={styles.one}>
+      <Button onClick={handleAddNumber} className={styles.one}>
         1
       </Button>
-      <Button onClick={changeText} className={styles.two}>
+      <Button onClick={handleAddNumber} className={styles.two}>
         2
       </Button>
-      <Button onClick={changeText} className={styles.three}>
+      <Button onClick={handleAddNumber} className={styles.three}>
         3
       </Button>
-      <Button onClick={changeText} className={styles.zero}>
+      <Button onClick={handleAddNumber} className={styles.zero}>
         0
       </Button>
-      <Button onClick={changeText} className={styles.dot}>
+      <Button
+        onClick={(e) => {
+          console.log('Add dot');
+        }}
+        className={styles.dot}
+      >
         .
       </Button>
-      <Button onClick={changeText} className={styles.delete}>
+      <Button onClick={handleDelete} className={styles.delete}>
         DEL
       </Button>
-      <Button onClick={changeText} className={styles.equals}>
+      <Button
+        onClick={(e) => {
+          console.log('Calculate result');
+        }}
+        className={styles.equals}
+      >
         =
       </Button>
     </div>
