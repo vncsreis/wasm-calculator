@@ -21,8 +21,24 @@ export default function Calculator() {
     },
 
     handleAddOperator(e: React.MouseEvent) {
-      const newText = e.currentTarget.innerHTML;
-      setText((oldText) => oldText + ' ' + newText + ' ');
+      const textArray = text.split(' ').filter((e) => e !== '');
+      const finalIndex = textArray.length - 1;
+      if (textArray.length < 3 && textArray.length > 0) {
+        if (
+          textArray[finalIndex] === '+' ||
+          textArray[finalIndex] === '-' ||
+          textArray[finalIndex] === '*' ||
+          textArray[finalIndex] === '/'
+        ) {
+          textArray[finalIndex] = e.currentTarget.innerHTML;
+          const newText = textArray.join(' ') + ' ';
+          setText(newText);
+        } else {
+          const newOperator = e.currentTarget.innerHTML;
+          const newText = text + ' ' + newOperator + ' ';
+          setText(newText);
+        }
+      }
     },
 
     handleClearText(e: React.MouseEvent) {
@@ -30,24 +46,32 @@ export default function Calculator() {
     },
 
     handleDelete(e: React.MouseEvent) {
-      const textArray = text.split(' ');
+      const textArray = text.split(' ').filter((e) => e !== '');
       textArray.pop();
       const newText = textArray.join(' ');
       setText(newText);
     },
 
     handleToggleNegative(e: React.MouseEvent) {
-      const textArray = text.split(' ');
+      const textArray = text.split(' ').filter((e) => e !== '');
       const finalIndex = textArray.length - 1;
       const lastNumber = textArray[finalIndex];
-      if (lastNumber.indexOf('-') !== -1) {
-        textArray[finalIndex] = lastNumber.replace('-', '');
-      } else {
-        textArray[finalIndex] = '-' + lastNumber;
-      }
+      if (
+        lastNumber !== '' &&
+        lastNumber !== '+' &&
+        lastNumber !== '-' &&
+        lastNumber !== '*' &&
+        lastNumber !== '/'
+      ) {
+        if (lastNumber.indexOf('-') !== -1) {
+          textArray[finalIndex] = lastNumber.replace('-', '');
+        } else {
+          textArray[finalIndex] = '-' + lastNumber;
+        }
 
-      const newText = textArray.join(' ');
-      setText(newText);
+        const newText = textArray.join(' ');
+        setText(newText);
+      }
     },
   };
 
