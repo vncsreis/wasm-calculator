@@ -3,10 +3,11 @@
   width: 100%;
   display: grid;
   grid-template-areas:
-    'seven eight nine divide'
-    'four five six multiply'
-    'one two three minus'
-    'zero dot plus equals';
+    'clear negative divide multiply'
+    'seven eight nine minus'
+    'four five six plus'
+    'one two three equals'
+    'zero dot delete equals';
 }
 
 .plus {
@@ -31,6 +32,18 @@
 
 .dot {
   grid-area: dot;
+}
+
+.clear {
+  grid-area: clear;
+}
+
+.negative {
+  grid-area: negative;
+}
+
+.delete {
+  grid-area: delete;
 }
 
 .one {

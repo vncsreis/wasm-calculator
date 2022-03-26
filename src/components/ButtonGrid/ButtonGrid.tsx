@@ -8,6 +8,18 @@ interface ButtonGridProps {
 export default function ButtonGrid({ changeText }: ButtonGridProps) {
   return (
     <div className={styles.grid}>
+      <Button onClick={changeText} className={styles.clear}>
+        C
+      </Button>
+      <Button onClick={changeText} className={styles.negative}>
+        +/-
+      </Button>
+      <Button onClick={changeText} className={styles.divide}>
+        /
+      </Button>
+      <Button onClick={changeText} className={styles.multiply}>
+        *
+      </Button>
       <Button onClick={changeText} className={styles.seven}>
         7
       </Button>
@@ -17,8 +29,8 @@ export default function ButtonGrid({ changeText }: ButtonGridProps) {
       <Button onClick={changeText} className={styles.nine}>
         9
       </Button>
-      <Button onClick={changeText} className={styles.divide}>
-        /
+      <Button onClick={changeText} className={styles.minus}>
+        -
       </Button>
       <Button onClick={changeText} className={styles.four}>
         4
@@ -29,8 +41,8 @@ export default function ButtonGrid({ changeText }: ButtonGridProps) {
       <Button onClick={changeText} className={styles.six}>
         6
       </Button>
-      <Button onClick={changeText} className={styles.multiply}>
-        *
+      <Button onClick={changeText} className={styles.plus}>
+        +
       </Button>
       <Button onClick={changeText} className={styles.one}>
         1
@@ -41,17 +53,14 @@ export default function ButtonGrid({ changeText }: ButtonGridProps) {
       <Button onClick={changeText} className={styles.three}>
         3
       </Button>
-      <Button onClick={changeText} className={styles.minus}>
-        -
-      </Button>
       <Button onClick={changeText} className={styles.zero}>
         0
       </Button>
       <Button onClick={changeText} className={styles.dot}>
         .
       </Button>
-      <Button onClick={changeText} className={styles.plus}>
-        +
+      <Button onClick={changeText} className={styles.delete}>
+        DEL
       </Button>
       <Button onClick={changeText} className={styles.equals}>
         =
