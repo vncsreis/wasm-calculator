@@ -1,5 +1,9 @@
 import style from './Display.module.css';
 
-export default function Display() {
-  return <div className={style.display}>Test</div>;
+interface DisplayProps {
+  text: string;
+}
+
+export default function Display({ text }: DisplayProps) {
+  return <div className={style.display}>{text}</div>;
 }
