@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import ButtonGrid from '../ButtonGrid';
+import React, { useEffect, useState } from 'react';
+import init, { calculate } from '../../lib/pkg/wasm_calc_lib.js';
+import ButtonGrid from '../ButtonGrid/ButtonGrid';
 import Display from '../Display';
 import style from './Calculator.module.css';
 
@@ -9,10 +10,15 @@ export interface CalculatorFunctions {
   handleDelete: (e: React.MouseEvent) => void;
   handleAddNumber: (e: React.MouseEvent) => void;
   handleToggleNegative: (e: React.MouseEvent) => void;
+  handleCalculation: (e: React.MouseEvent) => void;
 }
 
 export default function Calculator() {
   const [text, setText] = useState('');
+
+  useEffect(() => {
+    (async () => await init())();
+  });
 
   const calculatorFunctions: CalculatorFunctions = {
     handleAddNumber(e: React.MouseEvent) {
@@ -72,6 +78,11 @@ export default function Calculator() {
         const newText = textArray.join(' ');
         setText(newText);
       }
+    },
+
+    handleCalculation(e: React.MouseEvent) {
+      const result = calculate(text);
+      setText(`${result}`);
     },
   };
 
