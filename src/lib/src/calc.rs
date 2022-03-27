@@ -21,7 +21,7 @@ pub fn operate(operand: &String, n1: &String, n2: &String) -> f64 {
     match operand.as_str() {
         "+" => return add(n1, n2),
         "-" => return subtract(n1, n2),
-        "x" => return multiply(n1, n2),
+        "*" => return multiply(n1, n2),
         "/" => return divide(n1, n2),
         _ => todo!(),
     }
