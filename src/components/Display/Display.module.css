@@ -7,4 +7,6 @@
   font-size: 2rem;
   background-color: white;
   border-radius: 5px;
+  white-space: nowrap;
+  overflow: hidden;
 }
