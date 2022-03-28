@@ -11,6 +11,7 @@ export interface CalculatorFunctions {
   handleAddNumber: (e: React.MouseEvent) => void;
   handleToggleNegative: (e: React.MouseEvent) => void;
   handleCalculation: (e: React.MouseEvent) => void;
+  handleAddDot: (e: React.MouseEvent) => void;
 }
 
 export default function Calculator() {
@@ -22,8 +23,29 @@ export default function Calculator() {
 
   const calculatorFunctions: CalculatorFunctions = {
     handleAddNumber(e: React.MouseEvent) {
-      const newText = e.currentTarget.innerHTML;
-      setText((oldText) => oldText + newText);
+      const inputNumber = e.currentTarget.innerHTML;
+      const textArray = text.split(' ').filter((e) => e !== '');
+      if (textArray.length === 0) {
+        textArray.push('');
+      }
+      const finalIndex = textArray.length - 1;
+      if (textArray[finalIndex].indexOf('.0') !== -1) {
+        textArray[finalIndex] =
+          textArray[finalIndex].split('.')[0] + '.' + inputNumber;
+      } else if (
+        textArray[finalIndex] === '+' ||
+        textArray[finalIndex] === '-' ||
+        textArray[finalIndex] === '*' ||
+        textArray[finalIndex] === '/'
+      ) {
+        textArray.push(inputNumber);
+      } else {
+        textArray[finalIndex] = textArray[finalIndex] + inputNumber;
+      }
+
+      const newText = textArray.join(' ');
+
+      setText(newText);
     },
 
     handleAddOperator(e: React.MouseEvent) {
@@ -37,11 +59,11 @@ export default function Calculator() {
           textArray[finalIndex] === '/'
         ) {
           textArray[finalIndex] = e.currentTarget.innerHTML;
-          const newText = textArray.join(' ') + ' ';
+          const newText = textArray.join(' ');
           setText(newText);
         } else {
           const newOperator = e.currentTarget.innerHTML;
-          const newText = text + ' ' + newOperator + ' ';
+          const newText = text + ' ' + newOperator;
           setText(newText);
         }
       }
@@ -62,27 +84,51 @@ export default function Calculator() {
       const textArray = text.split(' ').filter((e) => e !== '');
       const finalIndex = textArray.length - 1;
       const lastNumber = textArray[finalIndex];
-      if (
-        lastNumber !== '' &&
-        lastNumber !== '+' &&
-        lastNumber !== '-' &&
-        lastNumber !== '*' &&
-        lastNumber !== '/'
-      ) {
-        if (lastNumber.indexOf('-') !== -1) {
-          textArray[finalIndex] = lastNumber.replace('-', '');
-        } else {
-          textArray[finalIndex] = '-' + lastNumber;
-        }
 
-        const newText = textArray.join(' ');
-        setText(newText);
+      if (textArray.length > 0 && lastNumber) {
+        const testingForZero = [...new Set(lastNumber.split(''))];
+        if (
+          lastNumber !== '' &&
+          lastNumber !== '+' &&
+          lastNumber !== '-' &&
+          lastNumber !== '*' &&
+          lastNumber !== '/' &&
+          (testingForZero[0] !== '0' || testingForZero.length > 1)
+        ) {
+          if (lastNumber.indexOf('-') !== -1) {
+            textArray[finalIndex] = lastNumber.replace('-', '');
+          } else {
+            textArray[finalIndex] = '-' + lastNumber;
+          }
+
+          const newText = textArray.join(' ');
+          setText(newText);
+        }
       }
     },
 
+    handleAddDot(e: React.MouseEvent) {
+      const textArray = text.split(' ').filter((e) => e !== '');
+      const finalIndex = textArray.length - 1;
+      const lastNumber = textArray[finalIndex];
+      if (lastNumber.indexOf('.') === -1) {
+        textArray[finalIndex] = lastNumber + '.0';
+      }
+
+      const newText = textArray.join(' ');
+      setText(newText);
+    },
+
     handleCalculation(e: React.MouseEvent) {
-      const result = calculate(text);
-      setText(`${result}`);
+      const textArray = text.split(' ').filter((e) => e !== '');
+      if (textArray.length === 3) {
+        try {
+          const result = calculate(text);
+          setText(`${result}`);
+        } catch (e) {
+          alert('Oops! Something went wrong');
+        }
+      }
     },
   };
 

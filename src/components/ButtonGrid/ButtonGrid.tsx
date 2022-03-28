@@ -13,6 +13,7 @@ export default function ButtonGrid({ calculator }: ButtonGridProps) {
     handleDelete,
     handleAddNumber,
     handleToggleNegative,
+    handleAddDot,
     handleCalculation,
   } = calculator;
 
@@ -66,12 +67,7 @@ export default function ButtonGrid({ calculator }: ButtonGridProps) {
       <Button onClick={handleAddNumber} className={styles.zero}>
         0
       </Button>
-      <Button
-        onClick={(e) => {
-          console.log('Add dot');
-        }}
-        className={styles.dot}
-      >
+      <Button onClick={handleAddDot} className={styles.dot}>
         .
       </Button>
       <Button onClick={handleDelete} className={styles.delete}>
