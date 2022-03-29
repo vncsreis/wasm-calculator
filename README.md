@@ -1,5 +1,7 @@
 # Wasm-Calc
 
+![Calculator](https://raw.githubusercontent.com/vncsreis/wasm-calculator/media/calculator.png)
+
 Simple React calculator, with the calculating functions built on Rust and compiled to WebAssembly.
 
 Features simple arithmetic operators, with negative and floating point numbers. Clear display and delete last input are also added.
